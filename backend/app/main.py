@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
+from app import models  # noqa: F401 - importa modelos para que create_all los detecte
 from app.routers import auth, recursos, compartir
 
 app = FastAPI(title="Visualia API")
