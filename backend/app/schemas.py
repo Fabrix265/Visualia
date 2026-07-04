@@ -99,3 +99,25 @@ class DocenteBusqueda(BaseModel):
 
     id: int
     nombre: str
+
+
+# --- Recurso con origen (para mis-recursos) ---
+class RecursoConOrigen(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    docente_id: int
+    tipo: str
+    titulo: str
+    prompt_usuario: str
+    modo_proyeccion: bool
+    html_content: str | None
+    creado_en: datetime
+    origen: str  # "propio" o "compartido"
+    compartido_por: str | None = None  # nombre del docente que compartió
+    es_favorito: bool = False
+
+
+# --- Favorito toggle ---
+class FavoritoToggle(BaseModel):
+    recurso_id: int
