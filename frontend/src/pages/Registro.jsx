@@ -72,7 +72,7 @@ export default function Registro() {
 
         <p className="text-center mt-6 text-gray-600">
           ¿Ya tenés cuenta?{' '}
-          <Link to="/login" className="text-pastel-pink hover:underline">
+          <Link to="/login" className="text-pink-500 font-semibold hover:underline">
             Iniciar sesión
           </Link>
         </p>

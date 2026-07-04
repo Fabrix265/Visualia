@@ -1,20 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-pastel-blue: #a8d8ea;
-  --color-pastel-pink: #ffb6c1;
-  --color-pastel-green: #b5ead7;
-  --color-pastel-yellow: #ffd3b6;
-  --color-pastel-purple: #d4a5ff;
-  --color-pastel-orange: #ffdac1;
+  --color-cream: #fffdf7;
+  --color-pastel-blue: #aee2ff;
+  --color-pastel-pink: #ffd1e3;
+  --color-pastel-green: #b8f2d0;
+  --color-pastel-purple: #e2d6f3;
+  --color-pastel-orange: #ffdab9;
+  --color-pastel-yellow: #fff3b0;
+  --color-ink: #3a3a3a;
   --font-fredoka: 'Fredoka', sans-serif;
   --font-nunito: 'Nunito', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-quicksand: 'Quicksand', sans-serif;
 }
 
 body {
   margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-nunito);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Foco de teclado visible en toda la app, sin romper el look redondeado */
+:focus-visible {
+  outline: 3px solid var(--color-pastel-blue);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -28,15 +28,15 @@ export default function MisRecursos() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <TopBar />
+    <div className="min-h-screen bg-cream">
+      <TopBar showBack title="Mis recursos" />
       
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-fredoka">Mis recursos</h1>
           <Link
             to="/"
-            className="bg-pastel-green text-white px-4 py-2 rounded-xl hover:bg-green-400 transition-colors"
+            className="bg-pastel-green text-ink px-4 py-2 rounded-2xl shadow-sm hover:shadow-md hover:brightness-95 transition-all font-nunito font-semibold"
           >
             + Crear
           </Link>
@@ -73,7 +73,7 @@ export default function MisRecursos() {
             <p className="text-gray-500 mb-4">No tenés recursos todavía</p>
             <Link
               to="/"
-              className="bg-pastel-green text-white px-6 py-3 rounded-xl hover:bg-green-400 transition-colors"
+              className="bg-pastel-green text-ink px-6 py-3 rounded-2xl shadow-sm hover:shadow-md hover:brightness-95 transition-all font-nunito font-semibold"
             >
               Crear mi primer recurso
             </Link>
