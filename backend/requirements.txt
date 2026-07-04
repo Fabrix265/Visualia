@@ -8,3 +8,5 @@ passlib[bcrypt]
 bcrypt<4.1.0
 google-generativeai
 python-multipart
+pytest
+httpx

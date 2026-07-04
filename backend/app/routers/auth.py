@@ -1,9 +1,11 @@
-import uuid
+from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
-from passlib.context import CryptContext
 from app.database import get_db
 from app.models import Docente, Sesion
+from app.core.security import (
+    hash_password, verify_password, generate_token, DocenteActualDep
+)
 from app.schemas import (
     DocenteCreate, DocenteResponse,
     SesionCreate, SesionResponse,
@@ -12,31 +14,11 @@ from app.schemas import (
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def obtener_docente_actual(
-    authorization: str = Header(None),
-    db: Session = Depends(get_db)
-) -> Docente:
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Token no proporcionado")
-
-    token = authorization.replace("Bearer ", "")
-    sesion = db.query(Sesion).filter(Sesion.token == token).first()
-
-    if not sesion:
-        raise HTTPException(status_code=401, detail="Token invalido")
-
-    docente = db.query(Docente).filter(Docente.id == sesion.docente_id).first()
-    if not docente:
-        raise HTTPException(status_code=401, detail="Docente no encontrado")
-
-    return docente
+DBDep = Annotated[Session, Depends(get_db)]
 
 
 @router.post("/registro", response_model=DocenteResponse)
-def registro(docente_data: DocenteCreate, db: Session = Depends(get_db)):
+def registro(docente_data: DocenteCreate, db: DBDep):
     existing = db.query(Docente).filter(Docente.nombre == docente_data.nombre).first()
     if existing:
         raise HTTPException(
@@ -46,7 +28,7 @@ def registro(docente_data: DocenteCreate, db: Session = Depends(get_db)):
 
     docente = Docente(
         nombre=docente_data.nombre,
-        password_hash=pwd_context.hash(docente_data.password)
+        password_hash=hash_password(docente_data.password)
     )
     db.add(docente)
     db.commit()
@@ -55,15 +37,15 @@ def registro(docente_data: DocenteCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/login", response_model=SesionResponse)
-def login(login_data: SesionCreate, db: Session = Depends(get_db)):
+def login(login_data: SesionCreate, db: DBDep):
     docente = db.query(Docente).filter(Docente.nombre == login_data.nombre).first()
 
-    if not docente or not pwd_context.verify(login_data.password, docente.password_hash):
+    if not docente or not verify_password(login_data.password, docente.password_hash):
         raise HTTPException(status_code=401, detail="Nombre o password incorrectos")
 
     sesion = Sesion(
         docente_id=docente.id,
-        token=str(uuid.uuid4())
+        token=generate_token()
     )
     db.add(sesion)
     db.commit()
@@ -73,9 +55,9 @@ def login(login_data: SesionCreate, db: Session = Depends(get_db)):
 
 @router.post("/logout")
 def logout(
-    docente: Docente = Depends(obtener_docente_actual),
-    authorization: str = Header(None),
-    db: Session = Depends(get_db)
+    db: DBDep,
+    docente: DocenteActualDep,
+    authorization: Annotated[str | None, Header()] = None,
 ):
     token = authorization.replace("Bearer ", "")
     sesion = db.query(Sesion).filter(Sesion.token == token).first()
@@ -91,8 +73,8 @@ router_buscar = APIRouter(prefix="/docentes", tags=["docentes"])
 @router_buscar.get("/buscar", response_model=list[DocenteBusqueda])
 def buscar_docentes(
     q: str,
-    docente_actual: Docente = Depends(obtener_docente_actual),
-    db: Session = Depends(get_db)
+    docente_actual: DocenteActualDep,
+    db: DBDep
 ):
     docentes = db.query(Docente).filter(
         Docente.nombre.ilike(f"%{q}%"),
