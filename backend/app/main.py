@@ -24,6 +24,7 @@ app.add_middleware(
     allow_origins=["https://visualia-three.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 
