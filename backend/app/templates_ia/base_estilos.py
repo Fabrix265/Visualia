@@ -22,6 +22,15 @@ ESTILO VISUAL:
 - Sombras muy sutiles (box-shadow suave, sin bordes duros)
 - Nada de imágenes realistas o agresivas
 
+ESTILO IMPRESIÓN (INCLUIR SIEMPRE):
+- Agregar @media print con:
+  - body { margin: 0; padding: 0; background: white; }
+  - @page { margin: 1.5cm; size: A4; }
+  - Ocultar botones, navegación, elementos no esenciales
+  - Ajustar tamaños de fuente para impresión
+  - Evitar cortes de contenido entre páginas
+  - Mantener colores de fondo para tarjetas (usar -webkit-print-color-adjust: exact)
+
 ESTRUCTURA HTML:
 - Documento HTML completo y autocontenido
 - CSS inline o en <style>

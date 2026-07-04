@@ -4,6 +4,7 @@ import client from '../api/client'
 import TopBar from '../components/TopBar'
 import VisorRecurso from '../components/VisorRecurso'
 import BotonPrimario from '../components/BotonPrimario'
+import { descargarHTML, imprimirHTML } from '../utils/archivos'
 
 export default function RecursoDetalle() {
   const { id } = useParams()
@@ -137,10 +138,10 @@ export default function RecursoDetalle() {
               <BotonPrimario variante="descargar" onClick={copiarEnlace}>
                 {copiado ? '¡Copiado!' : 'Copiar enlace público'}
               </BotonPrimario>
-              <BotonPrimario variante="descargar" onClick={() => alert('Descarga no implementada')}>
+              <BotonPrimario variante="descargar" onClick={() => descargarHTML(recurso.html_content, recurso.titulo)}>
                 Descargar
               </BotonPrimario>
-              <BotonPrimario variante="imprimir" onClick={() => window.print()}>
+              <BotonPrimario variante="imprimir" onClick={() => imprimirHTML(recurso.html_content)}>
                 Imprimir
               </BotonPrimario>
               <BotonPrimario variante="peligro" onClick={eliminarRecurso}>
