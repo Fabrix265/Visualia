@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pastel-blue: #a8d8ea;
+  --color-pastel-pink: #ffb6c1;
+  --color-pastel-green: #b5ead7;
+  --color-pastel-yellow: #ffd3b6;
+  --color-pastel-purple: #d4a5ff;
+  --color-pastel-orange: #ffdac1;
+  --font-fredoka: 'Fredoka', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-nunito);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
