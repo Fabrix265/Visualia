@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 # --- Docente ---
@@ -9,12 +9,11 @@ class DocenteCreate(BaseModel):
 
 
 class DocenteResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     nombre: str
     creado_en: datetime
-
-    class Config:
-        from_attributes = True
 
 
 # --- Sesion ---
@@ -24,10 +23,9 @@ class SesionCreate(BaseModel):
 
 
 class SesionResponse(BaseModel):
-    token: str
+    model_config = ConfigDict(from_attributes=True)
 
-    class Config:
-        from_attributes = True
+    token: str
 
 
 # --- Recurso ---
@@ -39,6 +37,8 @@ class RecursoCreate(BaseModel):
 
 
 class RecursoResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     docente_id: int
     tipo: str
@@ -48,9 +48,6 @@ class RecursoResponse(BaseModel):
     html_content: str | None
     creado_en: datetime
 
-    class Config:
-        from_attributes = True
-
 
 # --- Favorito ---
 class FavoritoCreate(BaseModel):
@@ -58,13 +55,12 @@ class FavoritoCreate(BaseModel):
 
 
 class FavoritoResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     docente_id: int
     recurso_id: int
     creado_en: datetime
-
-    class Config:
-        from_attributes = True
 
 
 # --- RecursoCompartido ---
@@ -74,14 +70,13 @@ class CompartirCreate(BaseModel):
 
 
 class CompartirResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     recurso_id: int
     compartido_por_id: int
     compartido_con_id: int
     creado_en: datetime
-
-    class Config:
-        from_attributes = True
 
 
 # --- EnlacePublico ---
@@ -90,19 +85,17 @@ class EnlacePublicoCreate(BaseModel):
 
 
 class EnlacePublicoResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     recurso_id: int
     token: str
     creado_en: datetime
 
-    class Config:
-        from_attributes = True
-
 
 # --- Buscar Docente ---
 class DocenteBusqueda(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     nombre: str
-
-    class Config:
-        from_attributes = True
