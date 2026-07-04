@@ -107,7 +107,7 @@ export default function Crear() {
           </div>
 
           <BotonPrimario type="submit" variante="generar" className="w-full" disabled={cargando}>
-            {cargando ? 'Generando recurso...' : 'Generar recurso'}
+            {cargando ? '✨ Generando tu recurso...' : 'Generar recurso'}
           </BotonPrimario>
         </form>
       </div>
