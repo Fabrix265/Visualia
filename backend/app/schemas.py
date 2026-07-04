@@ -97,3 +97,12 @@ class EnlacePublicoResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+# --- Buscar Docente ---
+class DocenteBusqueda(BaseModel):
+    id: int
+    nombre: str
+
+    class Config:
+        from_attributes = True

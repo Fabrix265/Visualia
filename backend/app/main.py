@@ -7,6 +7,7 @@ from app.routers import auth, recursos, compartir
 app = FastAPI(title="Visualia API")
 
 app.include_router(auth.router)
+app.include_router(auth.router_buscar)
 app.include_router(recursos.router)
 app.include_router(compartir.router)
 
