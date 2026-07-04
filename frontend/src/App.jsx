@@ -6,6 +6,7 @@ import Crear from './pages/Crear'
 import MisRecursos from './pages/MisRecursos'
 import RecursoDetalle from './pages/RecursoDetalle'
 import CompartidoPublico from './pages/CompartidoPublico'
+import Componentes from './pages/Componentes'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/mis-recursos" element={<MisRecursos />} />
         <Route path="/recurso/:id" element={<RecursoDetalle />} />
         <Route path="/compartido/:token" element={<CompartidoPublico />} />
+        <Route path="/componentes" element={<Componentes />} />
       </Routes>
     </BrowserRouter>
   )
