@@ -2,15 +2,13 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app import models  # noqa: F401 - importa modelos para que create_all los detecte
+from app import models 
 from app.routers import auth, recursos, compartir
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     yield
-
 
 app = FastAPI(title="Visualia API", lifespan=lifespan)
 
@@ -26,7 +24,6 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["*"],
 )
-
 
 @app.get("/")
 def root():
