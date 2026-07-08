@@ -32,20 +32,21 @@ export default function Componentes() {
   return (
     <div className="min-h-screen bg-cream">
       <TopBar showBack title="Componentes" />
-      
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-fredoka text-center mb-8">Catálogo de Componentes</h1>
-        
+
+      <div className="container mx-auto px-4 py-8 animar-entrada">
+        <h1 className="text-2xl sm:text-3xl font-fredoka font-semibold text-center mb-10">Catálogo de componentes</h1>
+
         {/* TopBar */}
         <section className="mb-12">
-          <h2 className="text-2xl font-fredoka mb-4">TopBar</h2>
-          <p className="text-gray-600 mb-4">Barra superior con logo y navegación</p>
+          <h2 className="text-xl font-fredoka font-semibold mb-1">TopBar</h2>
+          <p className="text-ink/60 text-sm mb-4">Barra superior con logo y navegación</p>
         </section>
 
         {/* Botones */}
         <section className="mb-12">
-          <h2 className="text-2xl font-fredoka mb-4">Botones</h2>
-          <div className="flex flex-wrap gap-4">
+          <h2 className="text-xl font-fredoka font-semibold mb-1">Botones</h2>
+          <p className="text-ink/60 text-sm mb-4">Variantes semánticas, todas con el mismo tamaño táctil mínimo</p>
+          <div className="bg-white rounded-3xl shadow-soft p-5 flex flex-wrap gap-3">
             <BotonPrimario variante="generar">Generar</BotonPrimario>
             <BotonPrimario variante="descargar">Descargar</BotonPrimario>
             <BotonPrimario variante="imprimir">Imprimir</BotonPrimario>
@@ -58,8 +59,9 @@ export default function Componentes() {
 
         {/* Tarjetas */}
         <section className="mb-12">
-          <h2 className="text-2xl font-fredoka mb-4">Tarjetas de Recurso</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <h2 className="text-xl font-fredoka font-semibold mb-1">Tarjetas de recurso</h2>
+          <p className="text-ink/60 text-sm mb-4">Color rotativo por posición, insignia de favorito, ícono por tipo</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {recursosEjemplo.map((recurso, index) => (
               <TarjetaRecurso key={recurso.id} recurso={recurso} index={index} />
             ))}
@@ -68,7 +70,8 @@ export default function Componentes() {
 
         {/* Visor */}
         <section className="mb-12">
-          <h2 className="text-2xl font-fredoka mb-4">Visor de Recurso</h2>
+          <h2 className="text-xl font-fredoka font-semibold mb-1">Visor de recurso</h2>
+          <p className="text-ink/60 text-sm mb-4">Con acceso rápido a pantalla completa (clave para proyección en TV)</p>
           <VisorRecurso htmlContent={htmlEjemplo} />
         </section>
       </div>

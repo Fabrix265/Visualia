@@ -50,61 +50,61 @@ export default function Crear() {
   return (
     <div className="min-h-screen bg-cream">
       <TopBar showBack title={`Crear ${nombresTipo[tipo]}`} />
-      
-      <div className="container mx-auto px-4 py-8 max-w-2xl">
-        <h1 className="text-3xl font-fredoka text-center mb-2">
+
+      <div className="container mx-auto px-4 py-8 max-w-xl animar-entrada">
+        <h1 className="text-2xl sm:text-3xl font-fredoka font-semibold text-center mb-2">
           Crear {nombresTipo[tipo]}
         </h1>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-ink/60 text-center mb-8">
           Describí lo que querés generar con IA
         </p>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-4">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-2xl mb-4 text-sm font-nunito">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-nunito mb-2">Título</label>
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-soft p-5 sm:p-7">
+          <div className="mb-5">
+            <label className="block text-ink font-nunito font-bold text-sm mb-2">Título</label>
             <input
               type="text"
               value={titulo}
               onChange={(e) => setTitulo(e.target.value)}
               placeholder="Ej: Ficha de colores primarios"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-pastel-green"
+              className="w-full px-4 py-3 rounded-2xl border border-black/10 bg-cream/60 focus:outline-none focus:border-pastel-green focus:bg-white transition-colors"
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-nunito mb-2">Descripción del recurso</label>
+          <div className="mb-5">
+            <label className="block text-ink font-nunito font-bold text-sm mb-2">Descripción del recurso</label>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Ej: Una ficha para que los niños identifiquen los colores primarios, con imágenes grandes y espacios para colorear"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-pastel-green h-32 resize-none"
+              className="w-full px-4 py-3 rounded-2xl border border-black/10 bg-cream/60 focus:outline-none focus:border-pastel-green focus:bg-white transition-colors h-32 resize-none"
               required
             />
           </div>
 
-          <div className="mb-6">
-            <label className="flex items-center gap-3 cursor-pointer">
+          <label className="flex items-center justify-between gap-3 cursor-pointer bg-cream/60 rounded-2xl px-4 py-3 mb-6">
+            <span>
+              <span className="block text-ink font-nunito font-bold text-sm">¿Se va a proyectar?</span>
+              <span className="block text-xs text-ink/50 mt-0.5">Se optimiza para pantalla grande</span>
+            </span>
+            <span className="relative inline-flex shrink-0">
               <input
                 type="checkbox"
                 checked={modoProyeccion}
                 onChange={(e) => setModoProyeccion(e.target.checked)}
-                className="w-5 h-5 rounded border-gray-300 text-pastel-green focus:ring-pastel-green"
+                className="peer sr-only"
               />
-              <span className="text-gray-700 font-nunito">
-                ¿Este recurso será proyectado?
-              </span>
-            </label>
-            <p className="text-sm text-gray-500 mt-1 ml-8">
-              Se optimiza para verse en pantalla grande
-            </p>
-          </div>
+              <span className="w-12 h-7 rounded-full bg-black/15 peer-checked:bg-pastel-green transition-colors"></span>
+              <span className="absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow-soft transition-transform peer-checked:translate-x-5"></span>
+            </span>
+          </label>
 
           <BotonPrimario type="submit" variante="generar" className="w-full" disabled={cargando}>
             {cargando ? '✨ Generando tu recurso...' : 'Generar recurso'}

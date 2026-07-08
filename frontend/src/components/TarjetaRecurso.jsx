@@ -19,18 +19,26 @@ export default function TarjetaRecurso({ recurso, index = 0 }) {
   const icono = iconos[recurso.tipo] || '📄'
 
   return (
-    <Link to={`/recurso/${recurso.id}`}>
-      <div className={`${colorFondo} rounded-2xl p-4 shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer`}>
-        <div className="flex items-start justify-between">
-          <div className="text-3xl">{icono}</div>
-          {recurso.es_favorito && (
-            <span className="text-pink-400 text-xl">★</span>
-          )}
+    <Link to={`/recurso/${recurso.id}`} className="block h-full">
+      <div className="tocable relative h-full bg-white rounded-2xl p-4 shadow-soft hover:shadow-soft-md cursor-pointer border border-black/5">
+        {recurso.es_favorito && (
+          <span
+            className="absolute -top-2 -right-2 w-7 h-7 flex items-center justify-center rounded-full bg-pastel-pink text-ink text-sm shadow-soft"
+            aria-label="Favorito"
+          >
+            ★
+          </span>
+        )}
+
+        <div className={`${colorFondo} w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-3`}>
+          {icono}
         </div>
-        <h3 className="mt-2 font-fredoka text-lg text-gray-800 truncate">{recurso.titulo}</h3>
-        <p className="text-sm text-gray-600 capitalize">{recurso.tipo.replace('_', ' ')}</p>
+
+        <h3 className="font-fredoka font-semibold text-base text-ink recorte-2">{recurso.titulo}</h3>
+        <p className="text-sm text-ink/60 capitalize mt-0.5">{recurso.tipo.replace('_', ' ')}</p>
+
         {recurso.origen === 'compartido' && (
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-ink/50 mt-2 truncate">
             Compartido por {recurso.compartido_por}
           </p>
         )}

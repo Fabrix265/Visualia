@@ -15,7 +15,7 @@ export default function VisorRecurso({ htmlContent, modoProyeccion = false }) {
 
   if (modoProyeccion) {
     return (
-      <div className="relative w-full h-[70vh] sm:h-screen rounded-2xl overflow-hidden shadow-md">
+      <div className="relative w-full h-[70vh] sm:h-screen rounded-2xl overflow-hidden shadow-soft-lg border border-black/5">
         <iframe
           ref={iframeRef}
           srcDoc={htmlContent}
@@ -25,16 +25,16 @@ export default function VisorRecurso({ htmlContent, modoProyeccion = false }) {
         />
         <button
           onClick={handleFullscreen}
-          className="absolute bottom-4 right-4 bg-pastel-blue text-white px-4 py-2 rounded-2xl shadow-md hover:brightness-95 transition-all font-nunito font-semibold cursor-pointer"
+          className="absolute bottom-4 right-4 flex items-center gap-2 bg-pastel-blue text-ink px-5 py-3 rounded-2xl shadow-soft-md hover:brightness-95 active:scale-95 transition-all font-nunito font-bold cursor-pointer"
         >
-          ⛶ Pantalla completa
+          <span aria-hidden="true">⛶</span> Proyectar en pantalla completa
         </button>
       </div>
     )
   }
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden shadow-md border border-black/5">
+    <div className="relative w-full rounded-2xl overflow-hidden shadow-soft border border-black/5">
       <iframe
         ref={iframeRef}
         srcDoc={htmlContent}
@@ -44,9 +44,9 @@ export default function VisorRecurso({ htmlContent, modoProyeccion = false }) {
       />
       <button
         onClick={handleFullscreen}
-        className="absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-2 rounded-2xl shadow-md hover:bg-white transition-all font-nunito font-semibold text-sm cursor-pointer"
+        className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-white/90 backdrop-blur px-3 py-2 rounded-2xl shadow-soft hover:bg-white active:scale-95 transition-all font-nunito font-bold text-sm cursor-pointer"
       >
-        ⛶ Ver completo
+        <span aria-hidden="true">⛶</span> Ver completo
       </button>
     </div>
   )
