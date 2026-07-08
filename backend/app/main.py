@@ -21,7 +21,7 @@ app.include_router(compartir.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://visualia-three.vercel.app"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
