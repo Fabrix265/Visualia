@@ -9,9 +9,8 @@ class TestRegistro:
         )
         assert response.status_code == 200
         data = response.json()
-        assert data["nombre"] == "nuevo_profesor"
-        assert "id" in data
-        assert "creado_en" in data
+        assert "token" in data
+        assert len(data["token"]) > 0
 
     def test_registro_nombre_duplicado(self, client, docente_creado):
         response = client.post(

@@ -44,21 +44,21 @@ def client(db_session):
 
 
 @pytest.fixture
-def docente_creado(client):
+def docente_creado(client, db_session):
     response = client.post(
         "/auth/registro",
         json={"nombre": "test_profesor", "password": "test123"}
     )
-    return response.json()
+    data = response.json()
+    token = data["token"]
+    sesion = db_session.query(Sesion).filter(Sesion.token == token).first()
+    docente = db_session.query(Docente).filter(Docente.id == sesion.docente_id).first()
+    return {"id": docente.id, "nombre": docente.nombre, "token": token}
 
 
 @pytest.fixture
-def token_docente(client, docente_creado):
-    response = client.post(
-        "/auth/login",
-        json={"nombre": "test_profesor", "password": "test123"}
-    )
-    return response.json()["token"]
+def token_docente(docente_creado):
+    return docente_creado["token"]
 
 
 @pytest.fixture

@@ -16,7 +16,7 @@ export default function Inicio() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-cream">
       <TopBar />
       
       <div className="container mx-auto px-4 py-8">
@@ -38,7 +38,7 @@ export default function Inicio() {
         <div className="mt-12 text-center">
           <Link
             to="/mis-recursos"
-            className="text-pastel-blue hover:underline font-nunito"
+            className="text-sky-600 font-nunito font-semibold hover:underline"
           >
             Ver mis recursos →
           </Link>

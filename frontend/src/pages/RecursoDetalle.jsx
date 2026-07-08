@@ -86,8 +86,8 @@ export default function RecursoDetalle() {
 
   if (cargando) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <TopBar />
+      <div className="min-h-screen bg-cream">
+        <TopBar showBack />
         <div className="flex items-center justify-center h-96">
           <p className="text-gray-500 font-nunito">Cargando recurso...</p>
         </div>
@@ -97,8 +97,8 @@ export default function RecursoDetalle() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <TopBar />
+      <div className="min-h-screen bg-cream">
+        <TopBar showBack />
         <div className="flex items-center justify-center h-96">
           <p className="text-red-500 font-nunito">{error}</p>
         </div>
@@ -107,8 +107,8 @@ export default function RecursoDetalle() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <TopBar />
+    <div className="min-h-screen bg-cream">
+      <TopBar showBack />
       
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="flex items-center justify-between mb-6">
@@ -124,7 +124,7 @@ export default function RecursoDetalle() {
 
         <div className="mt-6 flex flex-wrap gap-3">
           <BotonPrimario
-            variante={recurso.es_favorito ? 'peligro' : 'primario'}
+            variante={recurso.es_favorito ? 'favorito' : 'secundario'}
             onClick={toggleFavorito}
           >
             {recurso.es_favorito ? '★ Favorito' : '☆ Favorito'}

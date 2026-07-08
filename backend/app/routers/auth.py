@@ -17,7 +17,7 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 DBDep = Annotated[Session, Depends(get_db)]
 
 
-@router.post("/registro", response_model=DocenteResponse)
+@router.post("/registro", response_model=SesionResponse)
 def registro(docente_data: DocenteCreate, db: DBDep):
     existing = db.query(Docente).filter(Docente.nombre == docente_data.nombre).first()
     if existing:
@@ -33,7 +33,15 @@ def registro(docente_data: DocenteCreate, db: DBDep):
     db.add(docente)
     db.commit()
     db.refresh(docente)
-    return docente
+
+    sesion = Sesion(
+        docente_id=docente.id,
+        token=generate_token()
+    )
+    db.add(sesion)
+    db.commit()
+    db.refresh(sesion)
+    return sesion
 
 
 @router.post("/login", response_model=SesionResponse)
