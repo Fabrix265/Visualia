@@ -9,7 +9,7 @@ const variants = {
 }
 
 export default function BotonPrimario({ children, variante = 'primario', className = '', disabled = false, onClick, type = 'button' }) {
-  const baseStyles = 'px-6 py-3 rounded-2xl font-nunito font-semibold shadow-sm hover:shadow-md hover:brightness-95 active:brightness-90 transition-all duration-200 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100'
+  const baseStyles = 'inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-2xl font-nunito font-bold text-[15px] shadow-soft hover:shadow-soft-md hover:brightness-95 active:scale-[0.97] transition-all duration-150 ease-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:active:scale-100'
   const variantStyles = variants[variante] || variants.primario
 
   return (

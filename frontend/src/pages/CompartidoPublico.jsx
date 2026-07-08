@@ -35,18 +35,24 @@ export default function CompartidoPublico() {
 
   if (cargando) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500 font-nunito">Cargando recurso...</p>
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="spinner-marca rounded-full h-10 w-10 border-4 border-pastel-blue border-t-transparent"></div>
+          <p className="text-ink/60 font-nunito font-semibold">Cargando recurso...</p>
+        </div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-500 font-nunito mb-4">{error}</p>
-          <p className="text-gray-500">El enlace no es válido o el recurso fue eliminado</p>
+      <div className="min-h-screen bg-cream flex items-center justify-center px-4">
+        <div className="text-center max-w-sm">
+          <div className="w-16 h-16 mx-auto rounded-full bg-pastel-orange/60 flex items-center justify-center text-3xl mb-4">
+            😕
+          </div>
+          <p className="text-red-500 font-nunito font-bold mb-2">{error}</p>
+          <p className="text-ink/50 text-sm">El enlace no es válido o el recurso fue eliminado</p>
         </div>
       </div>
     )
@@ -63,9 +69,9 @@ export default function CompartidoPublico() {
       />
       <button
         onClick={handleFullscreen}
-        className="fixed bottom-4 right-4 bg-pastel-blue text-white px-4 py-2 rounded-2xl shadow-md hover:brightness-95 transition-all z-50 text-ink font-nunito font-semibold cursor-pointer"
+        className="fixed bottom-4 right-4 flex items-center gap-2 bg-pastel-blue text-ink px-5 py-3 rounded-2xl shadow-soft-md hover:brightness-95 active:scale-95 transition-all z-50 font-nunito font-bold cursor-pointer"
       >
-        Pantalla completa
+        <span aria-hidden="true">⛶</span> Pantalla completa
       </button>
     </div>
   )

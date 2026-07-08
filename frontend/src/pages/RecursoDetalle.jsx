@@ -4,6 +4,8 @@ import client from '../api/client'
 import TopBar from '../components/TopBar'
 import VisorRecurso from '../components/VisorRecurso'
 import BotonPrimario from '../components/BotonPrimario'
+import Cargando from '../components/Cargando'
+import Error from '../components/Error'
 import { descargarHTML, imprimirHTML } from '../utils/archivos'
 
 export default function RecursoDetalle() {
@@ -88,9 +90,7 @@ export default function RecursoDetalle() {
     return (
       <div className="min-h-screen bg-cream">
         <TopBar showBack />
-        <div className="flex items-center justify-center h-96">
-          <p className="text-gray-500 font-nunito">Cargando recurso...</p>
-        </div>
+        <Cargando mensaje="Cargando recurso..." />
       </div>
     )
   }
@@ -99,9 +99,7 @@ export default function RecursoDetalle() {
     return (
       <div className="min-h-screen bg-cream">
         <TopBar showBack />
-        <div className="flex items-center justify-center h-96">
-          <p className="text-red-500 font-nunito">{error}</p>
-        </div>
+        <Error mensaje={error} onReintentar={cargarRecurso} />
       </div>
     )
   }
@@ -109,12 +107,12 @@ export default function RecursoDetalle() {
   return (
     <div className="min-h-screen bg-cream">
       <TopBar showBack />
-      
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-fredoka">{recurso.titulo}</h1>
+
+      <div className="container mx-auto px-4 py-8 max-w-4xl animar-entrada">
+        <div className="flex items-center justify-between gap-3 mb-6">
+          <h1 className="text-2xl sm:text-3xl font-fredoka font-semibold truncate">{recurso.titulo}</h1>
           {recurso.origen === 'compartido' && (
-            <span className="text-sm text-gray-500 bg-gray-200 px-3 py-1 rounded-full">
+            <span className="shrink-0 text-xs sm:text-sm text-ink/60 bg-white px-3 py-1.5 rounded-full shadow-soft">
               Compartido por {recurso.compartido_por}
             </span>
           )}
@@ -122,7 +120,7 @@ export default function RecursoDetalle() {
 
         <VisorRecurso htmlContent={recurso.html_content} modoProyeccion={recurso.modo_proyeccion} />
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap gap-2.5">
           <BotonPrimario
             variante={recurso.es_favorito ? 'favorito' : 'secundario'}
             onClick={toggleFavorito}
@@ -152,9 +150,9 @@ export default function RecursoDetalle() {
         </div>
 
         {mostrarBuscador && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl p-6 w-full max-w-md">
-              <h2 className="text-xl font-fredoka mb-4">Compartir con docente</h2>
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-3xl p-6 w-full max-w-md shadow-soft-lg animar-entrada">
+              <h2 className="text-xl font-fredoka font-semibold mb-4">Compartir con docente</h2>
               <input
                 type="text"
                 value={busqueda}
@@ -163,15 +161,15 @@ export default function RecursoDetalle() {
                   buscarDocentes(e.target.value)
                 }}
                 placeholder="Buscar por nombre..."
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-pastel-blue mb-4"
+                className="w-full px-4 py-3 rounded-2xl border border-black/10 bg-cream/60 focus:outline-none focus:border-pastel-blue focus:bg-white transition-colors mb-4"
                 autoFocus
               />
-              <div className="max-h-60 overflow-y-auto">
+              <div className="max-h-60 overflow-y-auto -mx-1">
                 {resultadosBusqueda.map((docente) => (
                   <button
                     key={docente.id}
                     onClick={() => compartirConDocente(docente.id)}
-                    className="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-xl transition-colors"
+                    className="w-full text-left px-4 py-3 hover:bg-cream rounded-2xl transition-colors font-nunito cursor-pointer"
                   >
                     {docente.nombre}
                   </button>
@@ -179,7 +177,7 @@ export default function RecursoDetalle() {
               </div>
               <button
                 onClick={() => setMostrarBuscador(false)}
-                className="mt-4 w-full text-center text-gray-500 hover:text-gray-700"
+                className="mt-4 w-full text-center text-ink/50 hover:text-ink font-nunito transition-colors cursor-pointer"
               >
                 Cancelar
               </button>
