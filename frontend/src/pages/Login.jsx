@@ -32,35 +32,38 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-pastel-blue">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-fredoka text-center mb-6">Iniciar Sesión</h1>
-        
+    <div className="min-h-screen flex items-center justify-center bg-pastel-blue px-4">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-soft-lg w-full max-w-md animar-entrada">
+        <div className="text-center mb-6">
+          <span className="text-3xl font-fredoka font-semibold text-ink">Visualia</span>
+          <h1 className="text-xl font-fredoka font-semibold text-ink/80 mt-1">Iniciar sesión</h1>
+        </div>
+
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-4">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-2xl mb-4 text-sm font-nunito">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 font-nunito mb-2">Nombre</label>
+            <label className="block text-ink font-nunito font-bold text-sm mb-2">Nombre</label>
             <input
               type="text"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-pastel-blue"
+              className="w-full px-4 py-3 rounded-2xl border border-black/10 bg-cream/60 focus:outline-none focus:border-pastel-blue focus:bg-white transition-colors"
               required
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-nunito mb-2">Contraseña</label>
+            <label className="block text-ink font-nunito font-bold text-sm mb-2">Contraseña</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-pastel-blue"
+              className="w-full px-4 py-3 rounded-2xl border border-black/10 bg-cream/60 focus:outline-none focus:border-pastel-blue focus:bg-white transition-colors"
               required
             />
           </div>
@@ -70,9 +73,9 @@ export default function Login() {
           </BotonPrimario>
         </form>
 
-        <p className="text-center mt-6 text-gray-600">
+        <p className="text-center mt-6 text-ink/60 text-sm">
           ¿No tenés cuenta?{' '}
-          <Link to="/registro" className="text-sky-600 font-semibold hover:underline">
+          <Link to="/registro" className="text-ink font-bold hover:underline">
             Registrate
           </Link>
         </p>
