@@ -50,7 +50,7 @@ def generar_recurso(
 def mis_recursos(
     docente: DocenteActualDep,
     db: DBDep,
-    tipo: str | None = Query(None, description="Filtrar por tipo: ficha, hoja_grafica, afiche, lamina"),
+    tipo: str | None = Query(None, description="Filtrar por tipo: ficha, hoja_grafica, lamina, instructivo, kit_de_imprevistos, medidor_de_grupo, historia_participativa, laboratorio_de_preguntas, clasificador_interactivo, secuencia_logica, encontrar_diferencias"),
     es_favorito: bool | None = Query(None, description="Filtrar solo favoritos")
 ):
     todos_recursos = []

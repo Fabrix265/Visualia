@@ -18,8 +18,15 @@ export default function Crear() {
   const nombresTipo = {
     ficha: 'Ficha',
     hoja_grafica: 'Hoja gráfica',
-    afiche: 'Afiche',
     lamina: 'Lámina',
+    instructivo: 'Instructivo',
+    kit_de_imprevistos: 'Kit de imprevistos',
+    medidor_de_grupo: 'Medidor de grupo',
+    historia_participativa: 'Historia participativa',
+    laboratorio_de_preguntas: 'Laboratorio de preguntas',
+    clasificador_interactivo: 'Clasificador interactivo',
+    secuencia_logica: 'Secuencia lógica',
+    encontrar_diferencias: 'Encontrá las diferencias',
   }
 
   const handleSubmit = async (e) => {
