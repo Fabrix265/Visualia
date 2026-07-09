@@ -3,12 +3,16 @@ from app.templates_ia.ficha import FICHA_INSTRUCCIONES
 from app.templates_ia.hoja_grafica import HOJA_GRAFICA_INSTRUCCIONES
 from app.templates_ia.afiche import AFICHE_INSTRUCCIONES
 from app.templates_ia.lamina import LAMINA_INSTRUCCIONES
+from app.templates_ia.pictograma import PICTOGRAMA_INSTRUCCIONES
+from app.templates_ia.instructivo import INSTRUCTIVO_INSTRUCCIONES
 
 INSTRUCCIONES_TIPO = {
     "ficha": FICHA_INSTRUCCIONES,
     "hoja_grafica": HOJA_GRAFICA_INSTRUCCIONES,
     "afiche": AFICHE_INSTRUCCIONES,
     "lamina": LAMINA_INSTRUCCIONES,
+    "pictograma": PICTOGRAMA_INSTRUCCIONES,
+    "instructivo": INSTRUCTIVO_INSTRUCCIONES,
 }
 
 NOMBRES_TIPO = {
@@ -16,6 +20,8 @@ NOMBRES_TIPO = {
     "hoja_grafica": "una HOJA GRÁFICA (actividad visual con poco o nada de texto)",
     "afiche": "un AFICHE (para pegar en la pared, se lee de lejos)",
     "lamina": "una LÁMINA (apoyo informativo para mostrar al grupo)",
+    "pictograma": "un PICTOGRAMA (texto corto con íconos en lugar de palabras clave)",
+    "instructivo": "un INSTRUCTIVO (guía paso a paso con materiales y procedimiento)",
 }
 
 ROL_SISTEMA = """

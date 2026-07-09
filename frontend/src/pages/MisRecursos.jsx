@@ -11,6 +11,8 @@ const tiposFiltro = [
   { valor: 'hoja_grafica', etiqueta: 'Hojas gráficas' },
   { valor: 'afiche', etiqueta: 'Afiches' },
   { valor: 'lamina', etiqueta: 'Láminas' },
+  { valor: 'pictograma', etiqueta: 'Pictogramas' },
+  { valor: 'instructivo', etiqueta: 'Instructivos' },
 ]
 
 export default function MisRecursos() {

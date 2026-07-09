@@ -6,6 +6,8 @@ const tiposRecurso = [
   { tipo: 'hoja_grafica', nombre: 'Hoja gráfica', descripcion: 'Actividad visual, casi sin texto', icono: '📝', color: 'bg-pastel-pink' },
   { tipo: 'afiche', nombre: 'Afiche', descripcion: 'Para pegar en la pared del aula', icono: '🖼️', color: 'bg-pastel-purple' },
   { tipo: 'lamina', nombre: 'Lámina', descripcion: 'Para mostrar a todo el grupo', icono: '🎨', color: 'bg-pastel-green' },
+  { tipo: 'pictograma', nombre: 'Pictograma', descripcion: 'Texto con íconos en lugar de palabras', icono: '🔤', color: 'bg-pastel-yellow' },
+  { tipo: 'instructivo', nombre: 'Instructivo', descripcion: 'Guía paso a paso con materiales', icono: '📋', color: 'bg-pastel-orange' },
 ]
 
 export default function Inicio() {

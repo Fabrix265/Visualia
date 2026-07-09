@@ -5,6 +5,8 @@ const colores = [
   'bg-pastel-pink',
   'bg-pastel-purple',
   'bg-pastel-green',
+  'bg-pastel-yellow',
+  'bg-pastel-orange',
 ]
 
 const iconos = {
@@ -12,6 +14,8 @@ const iconos = {
   hoja_grafica: '📝',
   afiche: '🖼️',
   lamina: '🎨',
+  pictograma: '🔤',
+  instructivo: '📋',
 }
 
 export default function TarjetaRecurso({ recurso, index = 0 }) {

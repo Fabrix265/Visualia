@@ -20,6 +20,8 @@ export default function Crear() {
     hoja_grafica: 'Hoja gráfica',
     afiche: 'Afiche',
     lamina: 'Lámina',
+    pictograma: 'Pictograma',
+    instructivo: 'Instructivo',
   }
 
   const handleSubmit = async (e) => {
