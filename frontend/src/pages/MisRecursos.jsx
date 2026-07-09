@@ -13,6 +13,13 @@ const tiposFiltro = [
   { valor: 'lamina', etiqueta: 'Láminas' },
   { valor: 'pictograma', etiqueta: 'Pictogramas' },
   { valor: 'instructivo', etiqueta: 'Instructivos' },
+  { valor: 'kit_de_imprevistos', etiqueta: 'Kits de imprevistos' },
+  { valor: 'medidor_de_grupo', etiqueta: 'Medidores de grupo' },
+  { valor: 'historia_participativa', etiqueta: 'Historias participativas' },
+  { valor: 'laboratorio_de_preguntas', etiqueta: 'Laboratorios de preguntas' },
+  { valor: 'clasificador_interactivo', etiqueta: 'Clasificadores' },
+  { valor: 'secuencia_logica', etiqueta: 'Secuencias lógicas' },
+  { valor: 'encontrar_diferencias', etiqueta: 'Encontrá las diferencias' },
 ]
 
 export default function MisRecursos() {

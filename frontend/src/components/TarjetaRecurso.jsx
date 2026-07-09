@@ -16,6 +16,13 @@ const iconos = {
   lamina: '🎨',
   pictograma: '🔤',
   instructivo: '📋',
+  kit_de_imprevistos: '🧰',
+  medidor_de_grupo: '📊',
+  historia_participativa: '📖',
+  laboratorio_de_preguntas: '❓',
+  clasificador_interactivo: '🗂️',
+  secuencia_logica: '🔢',
+  encontrar_diferencias: '🔍',
 }
 
 export default function TarjetaRecurso({ recurso, index = 0 }) {
@@ -39,7 +46,7 @@ export default function TarjetaRecurso({ recurso, index = 0 }) {
         </div>
 
         <h3 className="font-fredoka font-semibold text-base text-ink recorte-2">{recurso.titulo}</h3>
-        <p className="text-sm text-ink/60 capitalize mt-0.5">{recurso.tipo.replace('_', ' ')}</p>
+        <p className="text-sm text-ink/60 capitalize mt-0.5">{recurso.tipo.replaceAll('_', ' ')}</p>
 
         {recurso.origen === 'compartido' && (
           <p className="text-xs text-ink/50 mt-2 truncate">

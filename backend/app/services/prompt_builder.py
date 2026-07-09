@@ -1,28 +1,90 @@
 from app.templates_ia.base_estilos import BASE_ESTILOS
+
+# --- Antes de la clase (preparación) ---
 from app.templates_ia.ficha import FICHA_INSTRUCCIONES
 from app.templates_ia.hoja_grafica import HOJA_GRAFICA_INSTRUCCIONES
-from app.templates_ia.afiche import AFICHE_INSTRUCCIONES
 from app.templates_ia.lamina import LAMINA_INSTRUCCIONES
-from app.templates_ia.pictograma import PICTOGRAMA_INSTRUCCIONES
 from app.templates_ia.instructivo import INSTRUCTIVO_INSTRUCCIONES
+
+# --- Durante la clase (en vivo) ---
+from app.templates_ia.kit_de_imprevistos import KIT_DE_IMPREVISTOS_INSTRUCCIONES
+from app.templates_ia.medidor_de_grupo import MEDIDOR_DE_GRUPO_INSTRUCCIONES
+from app.templates_ia.historia_participativa import HISTORIA_PARTICIPATIVA_INSTRUCCIONES
+
+# --- Juegos interactivos de aprendizaje ---
+from app.templates_ia.laboratorio_de_preguntas import LABORATORIO_DE_PREGUNTAS_INSTRUCCIONES
+from app.templates_ia.clasificador_interactivo import CLASIFICADOR_INTERACTIVO_INSTRUCCIONES
+from app.templates_ia.secuencia_logica import SECUENCIA_LOGICA_INSTRUCCIONES
+from app.templates_ia.encontrar_diferencias import ENCONTRAR_DIFERENCIAS_INSTRUCCIONES
+
+# NOTA: "afiche" y "pictograma" quedaron fuera del MVP (ver conversación de
+# alcance), pero sus archivos siguen en templates_ia/ por si se reincorporan
+# más adelante. Alcanza con agregarlos de nuevo a estos dos diccionarios.
 
 INSTRUCCIONES_TIPO = {
     "ficha": FICHA_INSTRUCCIONES,
     "hoja_grafica": HOJA_GRAFICA_INSTRUCCIONES,
-    "afiche": AFICHE_INSTRUCCIONES,
     "lamina": LAMINA_INSTRUCCIONES,
-    "pictograma": PICTOGRAMA_INSTRUCCIONES,
     "instructivo": INSTRUCTIVO_INSTRUCCIONES,
+    "kit_de_imprevistos": KIT_DE_IMPREVISTOS_INSTRUCCIONES,
+    "medidor_de_grupo": MEDIDOR_DE_GRUPO_INSTRUCCIONES,
+    "historia_participativa": HISTORIA_PARTICIPATIVA_INSTRUCCIONES,
+    "laboratorio_de_preguntas": LABORATORIO_DE_PREGUNTAS_INSTRUCCIONES,
+    "clasificador_interactivo": CLASIFICADOR_INTERACTIVO_INSTRUCCIONES,
+    "secuencia_logica": SECUENCIA_LOGICA_INSTRUCCIONES,
+    "encontrar_diferencias": ENCONTRAR_DIFERENCIAS_INSTRUCCIONES,
 }
 
 NOMBRES_TIPO = {
     "ficha": "una FICHA (hoja de trabajo individual para imprimir)",
     "hoja_grafica": "una HOJA GRÁFICA (actividad visual con poco o nada de texto)",
-    "afiche": "un AFICHE (para pegar en la pared, se lee de lejos)",
     "lamina": "una LÁMINA (apoyo informativo para mostrar al grupo)",
-    "pictograma": "un PICTOGRAMA (texto corto con íconos en lugar de palabras clave)",
     "instructivo": "un INSTRUCTIVO (guía paso a paso con materiales y procedimiento)",
+    "kit_de_imprevistos": "un KIT DE IMPREVISTOS (varias mini-actividades interactivas para usar en el momento)",
+    "medidor_de_grupo": "un MEDIDOR DE GRUPO (actividad interactiva que se adapta al ritmo del grupo con un toque)",
+    "historia_participativa": "una HISTORIA PARTICIPATIVA (cuento interactivo con decisiones del grupo)",
+    "laboratorio_de_preguntas": "un LABORATORIO DE PREGUNTAS (mini-trivia con feedback inmediato y puntaje)",
+    "clasificador_interactivo": "un CLASIFICADOR INTERACTIVO (juego de agrupar elementos por categoría)",
+    "secuencia_logica": "una SECUENCIA LÓGICA (juego de ordenar pasos de un proceso)",
+    "encontrar_diferencias": "un ENCONTRÁ LAS DIFERENCIAS (juego de atención visual entre dos escenas)",
 }
+
+# Tipos cuyo HTML necesita JS con estado (mostrar/ocultar pantallas, contar
+# aciertos, etc.) — reciben las reglas técnicas extra de REGLAS_JS_INTERACTIVO
+TIPOS_INTERACTIVOS = {
+    "kit_de_imprevistos",
+    "medidor_de_grupo",
+    "historia_participativa",
+    "laboratorio_de_preguntas",
+    "clasificador_interactivo",
+    "secuencia_logica",
+    "encontrar_diferencias",
+}
+
+REGLAS_JS_INTERACTIVO = """
+REGLAS TÉCNICAS OBLIGATORIAS PARA RECURSOS INTERACTIVOS:
+Este recurso se ejecuta dentro de un <iframe sandbox="allow-scripts"> (sin
+allow-same-origin ni allow-forms), así que el JavaScript tiene restricciones
+reales que hay que respetar o el recurso no va a funcionar:
+- NUNCA usar localStorage, sessionStorage, cookies ni nada que dependa de
+  "origin" — no están disponibles en este sandbox y tirarán error
+- NUNCA usar <form> con submit real, ni window.open, ni querer navegar a
+  otra URL — todo el estado se maneja mostrando/ocultando <div> con JS puro
+- NUNCA usar drag-and-drop nativo del navegador (dragstart/dragover/drop) —
+  es poco confiable en pantallas táctiles dentro de un iframe; para
+  "mover" o "elegir" algo, usar el patrón tocar-elemento → tocar-destino
+- Todo el JS va inline dentro de <script> en el mismo archivo, sin imports,
+  sin CDNs, sin dependencias externas de ningún tipo
+- Usar solo JavaScript vanilla (document.getElementById, classList,
+  addEventListener) — nada de frameworks
+- El estado de la interacción se guarda en variables JS normales (se pierde
+  si se recarga la página, y está bien que sea así: no hace falta persistirlo)
+- El feedback ante una acción del niño (correcto/incorrecto) debe ser
+  inmediato y nunca punitivo ni frustrante: siempre se puede reintentar
+  sin penalización
+- Probar mentalmente el flujo completo de clics antes de responder: cada
+  botón debe llevar a un estado válido, nunca a una pantalla en blanco o rota
+"""
 
 ROL_SISTEMA = """
 Sos el motor de generación de recursos de Visualia, una app que ayuda a docentes
@@ -89,6 +151,9 @@ def construir_prompt(tipo: str, prompt_usuario: str, modo_proyeccion: bool = Fal
 
     if modo_proyeccion:
         partes.append(MODO_PROYECCION)
+
+    if tipo in TIPOS_INTERACTIVOS:
+        partes.append(REGLAS_JS_INTERACTIVO)
 
     partes.extend([
         "",

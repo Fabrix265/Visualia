@@ -30,7 +30,7 @@ class SesionResponse(BaseModel):
 
 # --- Recurso ---
 class RecursoCreate(BaseModel):
-    tipo: str  # ficha, hoja_grafica, afiche, lamina
+    tipo: str  # ficha, hoja_grafica, lamina, instructivo, kit_de_imprevistos, medidor_de_grupo, historia_participativa, laboratorio_de_preguntas, clasificador_interactivo, secuencia_logica, encontrar_diferencias
     titulo: str
     prompt_usuario: str
     modo_proyeccion: bool = False

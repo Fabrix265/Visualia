@@ -35,7 +35,7 @@ class Recurso(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     docente_id = Column(Integer, ForeignKey("docentes.id"), nullable=False)
-    tipo = Column(String, nullable=False)  # ficha, hoja_grafica, afiche, lamina
+    tipo = Column(String, nullable=False)  # ficha, hoja_grafica, lamina, instructivo, kit_de_imprevistos, medidor_de_grupo, historia_participativa, laboratorio_de_preguntas, clasificador_interactivo, secuencia_logica, encontrar_diferencias
     titulo = Column(String, nullable=False)
     prompt_usuario = Column(Text, nullable=False)
     modo_proyeccion = Column(Boolean, default=False)
